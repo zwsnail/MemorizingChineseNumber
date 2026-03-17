@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中文数字背诵训练 - Chinese Number Practice</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&family=Outfit:wght@400;700&display=swap"
+        rel="stylesheet">
+    <!-- Ultimate Dynamic Background: Names + Pets + ASCII -->
+    <div id="global-student-bg" class="student-names-bg">
+        <!-- Names -->
+        <span class="name n1 c1">Ethan</span> <span class="name n2 c2">Noah</span> <span
+            class="name n3 c3">Bethany</span> <span class="name n4 c4">Karen</span>
+        <span class="name n5 c2">Ethan</span> <span class="name n6 c3">Noah</span> <span
+            class="name n7 c4">Bethany</span> <span class="name n8 c1">Karen</span>
+        <span class="name n9 c4">Ethan</span> <span class="name n10 c1">Noah</span> <span
+            class="name n11 c2">Bethany</span> <span class="name n12 c3">Karen</span>
+        <span class="name n13 c3">Ethan</span> <span class="name n14 c4">Noah</span> <span
+            class="name n15 c1">Bethany</span> <span class="name n16 c2">Karen</span>
+
+        <!-- Pets & ASCII Art -->
+        <span class="name p1">🐶</span> <span class="name p2">🐰</span> <span class="name p3">🐢</span>
+        <span class="name p4">U·ェ·U</span> <span class="name p5">🐰</span> <span class="name p6">🐢</span>
+        <span class="name p7">🐶</span> <span class="name p8">U·ェ·U</span>
+        <span class="name p9">Ethan & 🐶</span> <span class="name p10">Noah & 🐢</span>
+        <span class="name p11">Bethany & 🐰</span> <span class="name p12">Karen & 🐶</span>
+    </div>
+
+    <main class="app-container">
+        <!-- Start Screen -->
+        <section id="start-screen" class="view">
+            <h1 class="title">
+                <div class="char-unit large">
+                    <span class="pinyin">shù</span>
+                    <span class="zh">数</span>
+                </div>
+                <div class="char-unit large">
+                    <span class="pinyin">zì</span>
+                    <span class="zh">字</span>
+                </div>
+                <div class="char-unit large">
+                    <span class="pinyin">dà</span>
+                    <span class="zh">大</span>
+                </div>
+                <div class="char-unit large">
+                    <span class="pinyin">mào</span>
+                    <span class="zh">冒</span>
+                </div>
+                <div class="char-unit large">
+                    <span class="pinyin">xiǎn</span>
+                    <span class="zh">险</span>
+                </div>
+                <div class="en-title">Number Adventure 🎒</div>
+            </h1>
+            <div class="subtitle">
+                <div class="char-unit small">
+                    <span class="pinyin">dà</span>
+                    <span class="zh">大</span>
+                </div>
+                <div class="char-unit small">
+                    <span class="pinyin">jiā</span>
+                    <span class="zh">家</span>
+                </div>
+                <div class="char-unit small">
+                    <span class="pinyin">lái</span>
+                    <span class="zh">来</span>
+                </div>
+                <div class="char-unit small">
+                    <span class="pinyin">bèi</span>
+                    <span class="zh">背</span>
+                </div>
+                <div class="char-unit small">
+                    <span class="pinyin">sòng</span>
+                    <span class="zh">诵</span>
+                </div>
+                <div class="char-unit small">
+                    <span class="pinyin">shù</span>
+                    <span class="zh">数</span>
+                </div>
+                <div class="char-unit small">
+                    <span class="pinyin">zì</span>
+                    <span class="zh">字</span>
+                </div>
+                <div class="divider">|</div>
+                <div class="en-sub">Let's practice numbers! ✨</div>
+            </div>
+
+            <div class="stats-overview">
+                <div class="stat-card">
+                    <div class="label-group-main">
+                        <div class="char-unit x-small">
+                            <span class="pinyin">jīnrì</span>
+                            <span class="zh">今日</span>
+                        </div>
+                        <div class="char-unit x-small">
+                            <span class="pinyin">rìqī</span>
+                            <span class="zh">日期</span>
+                        </div>
+                        <div class="en-label">Today's Date 📅</div>
+                    </div>
+                    <span id="current-date" class="value">2026-03-16</span>
+                </div>
+            </div>
+
+            <button id="start-btn" class="btn primary">
+                <div class="btn-content">
+                    <div class="char-unit medium">
+                        <span class="pinyin">kāishǐ</span>
+                        <span class="zh">开始</span>
+                    </div>
+                    <div class="char-unit medium">
+                        <span class="pinyin">liànxí</span>
+                        <span class="zh">练习</span>
+                    </div>
+                    <div class="en-btn">Start Practice 🚀</div>
+                </div>
+            </button>
+        </section>
+
+        <!-- Quiz Screen -->
+        <section id="quiz-screen" class="view hidden">
+            <header class="quiz-header">
+                <div class="adventure-map">
+                    <div class="map-path"></div>
+                    <div id="map-player" class="map-player">🎒</div>
+                    <div class="map-goal">🏴‍☠️</div>
+                </div>
+                <div class="biome-label" id="current-biome">森林探险 | Forest 🌲</div>
+            </header>
+
+            <div class="settings-panel quiz-settings">
+                <div class="setting-item">
+                    <div class="label-group-main">
+                        <div class="char-unit x-small">
+                            <span class="pinyin">xiǎnshì</span>
+                            <span class="zh">显示</span>
+                        </div>
+                        <div class="char-unit x-small">
+                            <span class="pinyin">pīnyīn</span>
+                            <span class="zh">拼音</span>
+                        </div>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="pinyin-toggle" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <div class="label-group-main">
+                        <div class="char-unit x-small">
+                            <span class="pinyin">fāyīn</span>
+                            <span class="zh">发音</span>
+                        </div>
+                        <div class="char-unit x-small">
+                            <span class="pinyin">xuǎnzé</span>
+                            <span class="zh">选择</span>
+                        </div>
+                    </div>
+                    <div class="voice-selector">
+                        <div class="voice-opt">
+                            <input type="radio" id="voice-female" name="voice" value="female" checked>
+                            <label for="voice-female">女生 👩</label>
+                        </div>
+                        <div class="voice-opt">
+                            <input type="radio" id="voice-male" name="voice" value="male">
+                            <label for="voice-male">男生 👨</label>
+                        </div>
+                        <button id="preview-voice-btn" class="icon-btn" title="试听 | Preview">🔊</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-container">
+                <div class="card">
+                    <div id="quiz-card-content" class="card-content">
+                        <!-- Injected by script -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-section">
+                <input type="number" id="answer-input" placeholder="输入数字 Enter number... 🔢" autocomplete="off">
+                <button id="submit-btn" class="btn primary">
+                    <div class="btn-content-small">
+                        <div class="char-unit small">
+                            <span class="pinyin">tíjiǎo</span>
+                            <span class="zh">提交</span>
+                        </div>
+                        <div class="en-btn-small">Submit ✅</div>
+                    </div>
+                </button>
+                <button id="next-btn" class="btn secondary hidden">
+                    <div class="btn-content-small">
+                        <div class="char-unit small">
+                            <span class="pinyin">xià yīgè</span>
+                            <span class="zh">下个</span>
+                        </div>
+                        <div class="en-btn-small">Next ➡️</div>
+                    </div>
+                </button>
+            </div>
+
+            <div id="feedback" class="feedback-container hidden">
+                <p id="feedback-message" class="feedback-message"></p>
+                <div class="correct-info">
+                    正确答案 | Correct: <span id="correct-answer">54</span> 💡
+                </div>
+            </div>
+        </section>
+
+        <!-- Result Screen -->
+        <section id="result-screen" class="view hidden">
+            <div class="result-card">
+                <h2>练习完成！<br>
+                    <span style="font-size: 1.25rem; font-weight: normal;">Great Job! 🥳</span> 🎉
+                </h2>
+                <div class="final-stats">
+                    <div class="stat-item">
+                        <div class="label-group-aligned">
+                            <div class="char-unit x-small">
+                                <span class="pinyin">rìqī</span>
+                                <span class="zh">日期</span>
+                            </div>
+                            <div class="en-label">Date 📅</div>
+                        </div>
+                        <span id="result-date" class="value">2026-03-16</span>
+                    </div>
+                    <div class="stat-item">
+                        <div class="label-group-aligned">
+                            <div class="char-unit x-small">
+                                <span class="pinyin">zhèngquèlǜ</span>
+                                <span class="zh">正确率</span>
+                            </div>
+                            <div class="en-label">Accuracy 📈</div>
+                        </div>
+                        <span id="accuracy" class="value">100%</span>
+                    </div>
+                    <div class="stat-item">
+                        <div class="label-group-aligned">
+                            <div class="char-unit x-small">
+                                <span class="pinyin">shùliàng</span>
+                                <span class="zh">数量</span>
+                            </div>
+                            <div class="en-label">Score 🏆</div>
+                        </div>
+                        <span id="correct-count-stat" class="value">20/20</span>
+                    </div>
+                </div>
+                <button id="restart-btn" class="btn secondary">
+                    <div class="btn-content-small">
+                        <div class="char-unit small">
+                            <span class="pinyin">zài liàn yīcì</span>
+                            <span class="zh">再练一次</span>
+                        </div>
+                        <div class="en-btn-small">Restart 🔄</div>
+                    </div>
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+    </body>
+
+</html>
