@@ -164,14 +164,14 @@ function speak(text, forceGender = null) {
         msg.rate = 0.9;
         msg.pitch = 1.0;
     } else {
-        msg.rate = 0.85; // Slightly slower than female but faster than 0.8 to maintain articulation
-        msg.pitch = 1.0; // Reset pitch to default as lower pitch often reduces clarity
+        msg.rate = 1.0; // Increased from 0.85 to reduce "blurriness"
+        msg.pitch = 1.05; // Slightly higher pitch for better definition
     }
 
     // Cross-platform voice finding logic
     const zhVoices = voices.filter(v => v.lang.includes('zh') || v.lang.includes('CN'));
 
-    console.log('Available Chinese voices:', zhVoices.filter(v => v.lang.includes('zh')).map(v => v.name));
+    console.log('Available Chinese voices:', zhVoices.map(v => v.name));
 
     let selectedVoice = null;
 
@@ -181,13 +181,20 @@ function speak(text, forceGender = null) {
             zhVoices.find(v => v.name.includes('Xiaoxiao') || v.name.includes('Tingting') || v.name.includes('Xiaomi')) ||
             zhVoices[0];
     } else {
-        // High quality male voices: Google (Cloud), Microsoft Yunxi (Win), Li-mu (Mac)
-        // We prioritize Google Mandarin voices as they are often clearer than local compact voices
+        // High quality male voices: Google (Cloud), Microsoft Yunxi (Win), Eddy/Li-mu/Bin-bin/Rocko (Mac)
+        // STRATEGY: Stricrally prioritize "Enhanced" or "Premium" to avoid Compact/Noisy voices.
         selectedVoice = zhVoices.find(v => v.name.includes('Google') && v.name.includes('Mandarin') && !v.name.toLowerCase().includes('female')) ||
-            zhVoices.find(v => v.name.includes('Li-mu') || v.name.includes('Li mu') || v.name.includes('Kangkang') || v.name.includes('Yunxi')) ||
+            zhVoices.find(v => (v.name.includes('Eddy') || v.name.includes('Li-mu') || v.name.includes('Bin-bin') || v.name.includes('Rocko')) && (v.name.includes('Enhanced') || v.name.includes('Premium'))) ||
+            zhVoices.find(v => v.name.includes('Eddy') || v.name.includes('Rocko')) || // Eddy/Rocko are usually newer/better
+            zhVoices.find(v => v.name.includes('Li-mu') || v.name.includes('Bin-bin') || v.name.includes('Li mu')) ||
+            zhVoices.find(v => v.name.includes('Reed') || v.name.includes('Grandpa')) ||
             zhVoices.find(v => v.name.toLowerCase().includes('male')) ||
             zhVoices.filter(v => !v.name.includes('Xiaoxiao') && !v.name.includes('Tingting'))[0] ||
             zhVoices[zhVoices.length - 1];
+        
+        if (selectedVoice && !selectedVoice.name.includes('Enhanced') && !selectedVoice.name.includes('Google') && !selectedVoice.name.includes('Eddy')) {
+            console.warn('Using potentially low-quality voice:', selectedVoice.name, '. Please download "Enhanced" version in macOS settings.');
+        }
     }
 
     if (selectedVoice) {
