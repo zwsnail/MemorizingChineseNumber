@@ -358,15 +358,15 @@ function showResults() {
     // Dynamic Header based on score with Pinyin
     const resultHeader = document.querySelector('#result-screen h2');
     if (accuracy === 100) {
-        resultHeader.innerHTML = '<span class="py-inline" style="display:block;margin-bottom:0.25rem">tài bàng le!</span>太棒了！<br><span style="font-size: 1.25rem; font-weight: normal;">Perfect! 👑</span> 🎉';
+        resultHeader.innerHTML = '<span class="py-inline" style="display:block;margin-bottom:0.25rem;color:#fde047">tài bàng le!</span>太棒了！<br><span style="font-size: 1.25rem; font-weight: normal; color: #facc15;">Perfect! 👑</span> 🎉';
     } else if (accuracy >= 80) {
-        resultHeader.innerHTML = '<span class="py-inline" style="display:block;margin-bottom:0.25rem">zuò de hǎo!</span>做得好！<br><span style="font-size: 1.25rem; font-weight: normal;">Great Job! 🥳</span> 🎉';
+        resultHeader.innerHTML = '<span class="py-inline" style="display:block;margin-bottom:0.25rem;color:#fde047">zuò de hǎo!</span>做得好！<br><span style="font-size: 1.25rem; font-weight: normal; color: #facc15;">Great Job! 🥳</span> 🎉';
     } else if (accuracy >= 60) {
-        resultHeader.innerHTML = '<span class="py-inline" style="display:block;margin-bottom:0.25rem">bú cuò yo!</span>不错哟！<br><span style="font-size: 1.25rem; font-weight: normal;">Good Job! ✨</span>';
+        resultHeader.innerHTML = '<span class="py-inline" style="display:block;margin-bottom:0.25rem;color:#fde047">bú cuò yo!</span>不错哟！<br><span style="font-size: 1.25rem; font-weight: normal; color: #facc15;">Good Job! ✨</span>';
     } else if (accuracy > 0) {
-        resultHeader.innerHTML = '<span class="py-inline" style="display:block;margin-bottom:0.25rem">jì xù jiā yóu!</span>继续加油！<br><span style="font-size: 1.25rem; font-weight: normal;">Keep it up! 💪</span>';
+        resultHeader.innerHTML = '<span class="py-inline" style="display:block;margin-bottom:0.25rem;color:#94a3b8">jì xù jiā yóu!</span>继续加油！<br><span style="font-size: 1.25rem; font-weight: normal; color: #94a3b8;">Keep it up! 💪</span>';
     } else {
-        resultHeader.innerHTML = '<span class="py-inline" style="display:block;margin-bottom:0.25rem">zài jiē zài lì!</span>再接再厉！<br><span style="font-size: 1.25rem; font-weight: normal;">Try again! 📚</span>';
+        resultHeader.innerHTML = '<span class="py-inline" style="display:block;margin-bottom:0.25rem;color:#94a3b8">zài jiē zài lì!</span>再接再厉！<br><span style="font-size: 1.25rem; font-weight: normal; color: #94a3b8;">Try again! 📚</span>';
     }
 
     document.getElementById('result-date').textContent = new Date().toLocaleDateString();
@@ -419,13 +419,12 @@ function showView(viewId) {
     document.body.classList.remove('on-start', 'on-quiz', 'on-result');
     const studentBg = document.getElementById('global-student-bg');
     
-    if (viewId === 'start-screen') {
-        document.body.classList.add('on-start');
+    if (viewId === 'start-screen' || viewId === 'result-screen') {
+        document.body.classList.add(viewId === 'start-screen' ? 'on-start' : 'on-result');
         studentBg.classList.remove('hidden-bg');
     } else {
         studentBg.classList.add('hidden-bg');
         if (viewId === 'quiz-screen') document.body.classList.add('on-quiz');
-        else if (viewId === 'result-screen') document.body.classList.add('on-result');
     }
 }
 

@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 :root {
     --primary: #4f46e5;
     --primary-alt: #6366f1;
@@ -22,19 +26,13 @@ body.on-start {
     background-size: cover !important;
 }
 
-body.on-start .blob-1 {
-    --blob-1: #4f46e5;
-    opacity: 0.2;
+body.on-result {
+    background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%) !important;
 }
 
-body.on-start .blob-2 {
-    --blob-2: #8b5cf6;
-    opacity: 0.2;
-}
-
-body.on-start .blob-3 {
-    --blob-3: #ec4899;
-    opacity: 0.2;
+body.on-result .student-names-bg .name {
+    opacity: 0.3; /* More visible on results */
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
 }
 
 @keyframes gradient-shift {
@@ -641,8 +639,10 @@ body {
     position: absolute;
     left: 2rem;
     right: 2rem;
-    height: 2px;
-    background: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0, rgba(255, 255, 255, 0.1) 8px, transparent 8px, transparent 16px);
+    height: 6px; /* Increased height */
+    background: rgba(79, 70, 229, 0.15); /* More visible blue tint */
+    border-radius: 3px;
+    border: 1px solid rgba(79, 70, 229, 0.1);
 }
 
 .map-player {
@@ -778,6 +778,7 @@ body {
 }
 
 input[type="number"] {
+    display: block;
     width: 100%;
     background: rgba(255, 255, 255, 0.5);
     border: 1px solid #cbd5e1;
@@ -791,6 +792,18 @@ input[type="number"] {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     appearance: none;
     -moz-appearance: textfield;
+}
+
+input[type="number"]::placeholder {
+    font-size: 1.25rem; /* Smaller placeholder to show the emoji */
+    font-weight: 400;
+    opacity: 0.6;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 input[type="number"]:focus {
@@ -809,6 +822,8 @@ input[type="number"]:disabled {
 
 /* Buttons */
 .btn {
+    width: 100%;
+    display: block;
     padding: 1rem 1.5rem;
     border-radius: 1.25rem;
     font-weight: 700;
@@ -830,16 +845,16 @@ input[type="number"]:disabled {
 }
 
 .secondary {
-    background: rgba(255, 255, 255, 0.06);
-    color: #e2e8f0;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.15); /* Slightly darker background */
+    color: #1e293b; /* Dark text for better contrast on light glass */
+    border: 1px solid rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(8px);
 }
 
 .secondary:hover {
-    background: rgba(255, 255, 255, 0.12);
-    color: #ffffff;
-    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.25);
+    color: #000000;
+    border-color: rgba(0, 0, 0, 0.2);
     transform: translateY(-2px);
 }
 
@@ -945,8 +960,8 @@ input:checked+.slider:before {
 
 .py-inline {
     font-size: 0.9rem;
-    color: var(--text-muted);
-    font-weight: 400;
+    color: #475569; /* Darker slate for better visibility */
+    font-weight: 600; /* Bolder */
 }
 
 input[type="number"].correct-flash {
@@ -991,14 +1006,37 @@ input[type="number"].wrong-flash {
 }
 
 .result-card h2 {
-    font-size: 2.25rem;
-    font-weight: 800;
+    font-size: 2.8rem;
+    font-weight: 900;
     margin-bottom: 2rem;
     line-height: 1.2;
-    background: linear-gradient(to bottom, #fff, #94a3b8);
+    background: linear-gradient(to bottom, #fff 20%, #facc15 80%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5)); /* Stronger shadow */
+}
+
+body.on-result .py-inline {
+    color: #cbd5e1; /* Lighter color for dark background */
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+body.on-result .app-container {
+    background: rgba(15, 23, 42, 0.8); /* Darker container on result screen */
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+body.on-result .stat-item {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+body.on-result .value {
+    color: #fff;
+}
+
+body.on-result .en-label {
+    color: #94a3b8;
 }
 
 .final-stats {
